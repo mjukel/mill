@@ -11,7 +11,7 @@ import utest.framework.TestPath
 object TutTests extends TestSuite {
 
   trait TutTestModule extends TestUtil.BaseModule with TutModule {
-    def millSourcePath = TestUtil.getSrcPathBase() / millOuterCtx.enclosing.split('.')
+    override def millSourcePath = TestUtil.getSrcPathBase() / millOuterCtx.enclosing.split('.')
     def scalaVersion = "2.12.4"
     def tutVersion = "0.6.7"
   }
@@ -19,13 +19,13 @@ object TutTests extends TestSuite {
   object TutTest extends TutTestModule
 
   object TutCustomTest extends TutTestModule {
-    def tutTargetDirectory = millSourcePath
+    override def tutTargetDirectory = millSourcePath
   }
 
   object TutLibrariesTest extends TutTestModule {
-    def ivyDeps = Agg(ivy"org.typelevel::cats-core:1.4.0")
-    def tutSourceDirectory = T.sources { resourcePathWithLibraries }
-    def scalacPluginIvyDeps = Agg(ivy"org.spire-math::kind-projector:0.9.8")
+    override def ivyDeps = Agg(ivy"org.typelevel::cats-core:1.4.0")
+    override def tutSourceDirectory = T.sources { resourcePathWithLibraries }
+    override def scalacPluginIvyDeps = Agg(ivy"org.spire-math::kind-projector:0.9.8")
   }
 
   val resourcePath = os.pwd / 'contrib / 'tut / 'test / 'tut
