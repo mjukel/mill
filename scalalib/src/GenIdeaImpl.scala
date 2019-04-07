@@ -152,7 +152,8 @@ object GenIdeaImpl {
 
       ResolvedModule(
         path,
-        resolvedCp.map(_.path).filter(_.ext == "jar") ++ resolvedSrcs.map(_.path),
+        //resolvedCp.map(_.path).filter(_.ext == "jar") ++ resolvedSrcs.map(_.path),
+        resolvedCp.map(_.path).filter(_.ext == "jar"),
         mod,
         resolvedSp.map(_.path).filter(_.ext == "jar"),
         scalacOpts,
